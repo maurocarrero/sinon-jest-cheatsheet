@@ -13,7 +13,7 @@
 
 ## Spies
 
-### Create spies: <a name="create-spies"></a> 
+### 1. Create spies: <a name="create-spies"></a> 
 
 ###### sinon
 
@@ -26,7 +26,7 @@ const spy = sinon.spy()
 const spy = jest.fn()
 ```
 
-###  Know if they are called: <a name="are-they-called"></a>
+### 2. Know if they are called: <a name="are-they-called"></a>
 
 ###### sinon
 
@@ -44,7 +44,7 @@ spy.mock.calls.length >= 1;
 expect(spy).toHaveBeenCalled();
 ```
 
-### How many times are called: <a name="how-many-times"></a>
+### 3. How many times are called: <a name="how-many-times"></a>
 
 ###### sinon
 
@@ -65,7 +65,7 @@ spy.mock.calls.length === n;
 expect(spy).toHaveBeenCalledTimes(n);
 ```
 
-### Checking arguments: <a name="checking-arguments"></a>
+### 4. Checking arguments: <a name="checking-arguments"></a>
 
 ###### sinon
 
@@ -99,7 +99,7 @@ expect(spy).toHaveBeenLastCalledWith(1, 'Hey');
 .toHaveBeenCalledWith(expect.stringMatching(regexp));
 ```
 
-### Spy on objects' methods <a name="spy-on-objects-method"></a>
+### 5. Spy on objects' methods <a name="spy-on-objects-method"></a>
 
 ###### sinon
 
@@ -113,7 +113,7 @@ sinon.spy(someObject, 'aMethod');
 jest.spyOn(someObject, 'aMethod');
 ```
 
-### Restore original method <a name="restore-original-method"></a>
+### 6. Restore original method <a name="restore-original-method"></a>
 
 ###### sinon
 
@@ -127,7 +127,7 @@ someObject.aMethod.restore();
 someObject.aMethod.mockRestore();
 ```
 
-### Spy on method and return custom implementation <a name="custom-implementation"></a>
+### 7. Spy on method and return custom implementation <a name="custom-implementation"></a>
 
 ###### sinon
 
@@ -143,7 +143,7 @@ sinon.stub(operations, 'add')
     .mockImplementation(() => 89);
 ```
 
-### Conditional custom implementation <a name="conditional-custom-implementation"></a>
+### 8. Conditional custom implementation <a name="conditional-custom-implementation"></a>
 
         
 ###### sinon
