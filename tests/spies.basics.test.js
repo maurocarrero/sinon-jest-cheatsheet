@@ -1,27 +1,27 @@
-const sinon = require('sinon');
+const sinon = require("sinon");
 
-describe('SPIES - Basics', function () {
+describe("SPIES - Basics", function() {
   let sinonSpy;
   let jestSpy;
 
-  beforeAll(function () {
+  beforeAll(function() {
     sinonSpy = sinon.spy();
     jestSpy = jest.fn();
-  })
+  });
 
-  beforeEach(function () {
+  beforeEach(function() {
     sinonSpy.reset();
     jestSpy.mockReset();
   });
 
-  afterAll(function () {
+  afterAll(function() {
     sinonSpy = null;
     jestSpy = null;
-  })
+  });
 
-  describe('called | not called', function () {
-    describe('sinon: sinon.spy', function () {
-      it('spy.called', function () {
+  describe("called | not called", function() {
+    describe("sinon: sinon.spy", function() {
+      it("spy.called", function() {
         expect(sinonSpy.called).toEqual(false);
 
         sinonSpy();
@@ -29,28 +29,26 @@ describe('SPIES - Basics', function () {
         expect(sinonSpy.called).toEqual(true);
       });
 
-      it('spy.notCalled', function () {
+      it("spy.notCalled", function() {
         expect(sinonSpy.notCalled).toEqual(true);
 
         sinonSpy();
 
         expect(sinonSpy.notCalled).toEqual(false);
       });
-
-    })
-    describe('jest: jest.fn', function () {
-      it('.mock.calls.length', function () {
+    });
+    describe("jest: jest.fn", function() {
+      it(".mock.calls.length", function() {
         jestSpy();
 
         expect(jestSpy.mock.calls.length).toEqual(1);
       });
 
-      it('expect(spy).toHaveBeenCalled', function () {
+      it("expect(spy).toHaveBeenCalled", function() {
         jestSpy();
 
         expect(jestSpy).toHaveBeenCalled();
       });
     });
   });
-
 });

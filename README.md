@@ -1,4 +1,5 @@
 # Sinon # Jest (a cheatsheet).
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 Some examples on how to achieve the same goal with either of both libraries: [sinon](http://sinonjs.org/) and [jest](http://facebook.github.io/jest/).
 Also some of those goals achievable only by one of these tools.
@@ -210,17 +211,19 @@ jest.spyOn(operations, 'add')
 expect(fn()).toMatchSnapshot();
 ```
 
+
+###### snapshot of a React Component (using react-test-renderer)
+
 ```
 expect(
   ReactTestRenderer.create(React.createElement(Button))
 ).toMatchSnapshot();
-```
-
-###### using react-test-renderer
+``` 
 
 ```
 const tree = renderer.create(
     <Link page="http://www.facebook.com">Facebook</Link>
   ).toJSON()
 ```
+
 

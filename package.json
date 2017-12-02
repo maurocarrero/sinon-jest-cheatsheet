@@ -9,6 +9,7 @@
   },
   "scripts": {
     "postinstall": "npm run test:watch",
+    "prettier": "prettier --config .prettierrc --write ./{src,tests}/**/*.js",
     "test": "jest --verbose",
     "test:watch": "jest --watch"
   },
@@ -22,6 +23,7 @@
   "devDependencies": {
     "create-react-class": "^15.6.2",
     "jest": "^21.2.1",
+    "prettier": "^1.8.2",
     "react": "^16.2.0",
     "react-test-renderer": "^16.2.0",
     "sinon": "^4.1.2"
