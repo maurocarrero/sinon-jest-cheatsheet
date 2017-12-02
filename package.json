@@ -1,0 +1,21 @@
+{
+  "name": "sinon-jest-cheatsheet",
+  "version": "0.0.0",
+  "description": "A cheatsheet and examples comparing sinon with jest mocks.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --verbose",
+    "test:watch": "jest --watch"
+  },
+  "keywords": [
+    "jest",
+    "sinon",
+    "cheatsheet"
+  ],
+  "author": "Mauro Carrero",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^21.2.1",
+    "sinon": "^4.1.2"
+  }
+}
