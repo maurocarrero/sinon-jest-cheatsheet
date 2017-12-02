@@ -1,17 +1,25 @@
-const React = require("react");
-const createReactClass = require("create-react-class");
+const React = require('react');
+const createReactClass = require('create-react-class');
 
 module.exports = createReactClass({
-  _clickHandler: function() {
-    console.log("clicked");
+  clickHandler() {
+    console.log('clicked');
+    return 'clicked';
   },
-  render: function() {
+  doSomething(task) {
+    return task;
+  },
+  componentDidMount() {
+    this.doSomething('something');
+    return 'componentDidMount';
+  },
+  render() {
     return React.createElement(
-      "button",
+      'button',
       {
-        onClick: this._clickHandler
+        onClick: this.clickHandler
       },
-      "Click me"
+      'Click me'
     );
   }
 });

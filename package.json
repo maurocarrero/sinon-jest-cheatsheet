@@ -10,8 +10,8 @@
   "scripts": {
     "postinstall": "npm run test:watch",
     "prettier": "prettier --config .prettierrc --write ./{src,tests}/**/*.js",
-    "test": "jest --verbose",
-    "test:watch": "jest --watch"
+    "test": "jest --env=jsdom",
+    "test:watch": "jest --env=jsdom --watch"
   },
   "keywords": [
     "jest",
@@ -22,10 +22,17 @@
   "license": "MIT",
   "devDependencies": {
     "create-react-class": "^15.6.2",
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
     "jest": "^21.2.1",
     "prettier": "^1.8.2",
     "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0",
     "sinon": "^4.1.2"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/tests/setupTests.js",
+    "verbose": true
   }
 }
