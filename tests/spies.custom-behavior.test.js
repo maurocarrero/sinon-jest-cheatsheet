@@ -1,5 +1,5 @@
 const sinon = require('sinon');
-const operations = require('./sample');
+const operations = require('../src/index');
 
 describe('STUBS', function () {
 
