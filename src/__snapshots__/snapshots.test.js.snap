@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JEST: snapshot testing should match a React Component 1`] = `
+<button
+  onClick={[Function]}
+>
+  Click me
+</button>
+`;
+
+exports[`JEST: snapshot testing should match a function 1`] = `279`;

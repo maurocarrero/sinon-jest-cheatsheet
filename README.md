@@ -11,6 +11,9 @@
 7. [Custom implementation](#custom-implementation)
 8. [Conditional custom implementation](#custom-implementation)
 
+##### Jest specific
+9. [Snapshot testing](#snapshot-testing)
+
 ## Spies
 
 ### 1. Create spies: <a name="create-spies"></a> 
@@ -53,7 +56,6 @@ spy.calledOnce
 spy.calledTwice
 spy.calledThrice
 spy.callCount
-
 ```
 
 ###### jest
@@ -140,7 +142,12 @@ sinon.stub(operations, 'add')
 
 ```
 sinon.stub(operations, 'add')
-    .mockImplementation(() => 89);
+    .mockReturnValue(89);
+```
+
+```
+sinon.stub(operations, 'add')
+    .mockReturnValueOnce(89);
 ```
 
 ### 8. Conditional custom implementation <a name="conditional-custom-implementation"></a>
@@ -167,3 +174,28 @@ jest.spyOn(operations, 'add')
     }
   });
 ```
+
+## Jest specific
+
+### 9. Snapshot testing <a name="snapshot-testing"></a>
+
+###### snapshot of a function output
+
+```
+expect(fn()).toMatchSnapshot();
+```
+
+```
+expect(
+  ReactTestRenderer.create(React.createElement(Button))
+).toMatchSnapshot();
+```
+
+###### using react-test-renderer
+
+```
+const tree = renderer.create(
+    <Link page="http://www.facebook.com">Facebook</Link>
+  ).toJSON()
+```
+
