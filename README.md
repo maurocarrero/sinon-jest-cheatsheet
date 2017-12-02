@@ -1,4 +1,4 @@
-# Sinon vs Jest Mocks
+# Sinon Jest Cheatsheet
 
 ## Table of Contents
 ##### Spies
