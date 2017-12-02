@@ -1,9 +1,9 @@
-const sinon = require("sinon");
+const sinon = require('sinon');
 
-describe("SPIES", function() {
+describe('SPIES', function() {
   const someObject = {
     id: 43,
-    model: "C4",
+    model: 'C4',
     getModel: function() {
       return this.model;
     }
@@ -27,9 +27,9 @@ describe("SPIES", function() {
     jestSpy = null;
   });
 
-  describe("spy on method", function() {
+  describe('spy on method', function() {
     it("sinon.spy(obj, 'method')", function() {
-      sinonSpy = sinon.spy(someObject, "getModel");
+      sinonSpy = sinon.spy(someObject, 'getModel');
 
       someObject.getModel();
 
@@ -39,7 +39,7 @@ describe("SPIES", function() {
     });
 
     it("jest.spyOn(obj, 'method')", function() {
-      jestSpy = jest.spyOn(someObject, "getModel");
+      jestSpy = jest.spyOn(someObject, 'getModel');
 
       someObject.getModel();
 

@@ -1,7 +1,7 @@
-const sinon = require("sinon");
-const operations = require("../src/index");
+const sinon = require('sinon');
+const operations = require('../src/index');
 
-describe("STUBS", function() {
+describe('STUBS', function() {
   let sinonStub;
   let jestSpy;
 
@@ -16,9 +16,9 @@ describe("STUBS", function() {
   });
 
   describe("sinon's stub and jest's spyOn", function() {
-    describe("sinon.stub", function() {
+    describe('sinon.stub', function() {
       beforeEach(() => {
-        sinonStub = sinon.stub(operations, "add");
+        sinonStub = sinon.stub(operations, 'add');
       });
 
       afterEach(() => {
@@ -31,7 +31,7 @@ describe("STUBS", function() {
         expect(sinonStub.calledOnce).toEqual(true);
       });
 
-      it(".returns", function() {
+      it('.returns', function() {
         sinonStub.returns(89);
 
         const result = operations.add(1, 2);
@@ -41,9 +41,9 @@ describe("STUBS", function() {
       });
     });
 
-    describe("jest", () => {
+    describe('jest', () => {
       beforeEach(() => {
-        jestSpy = jest.spyOn(operations, "add");
+        jestSpy = jest.spyOn(operations, 'add');
       });
 
       afterEach(() => {
@@ -56,7 +56,7 @@ describe("STUBS", function() {
         expect(jestSpy).toHaveBeenCalledTimes(1);
       });
 
-      it(".mockReturnValue", function() {
+      it('.mockReturnValue', function() {
         jestSpy.mockReturnValue(89);
 
         const result = operations.add(3, 4);
@@ -65,7 +65,7 @@ describe("STUBS", function() {
         expect(result).toEqual(89);
       });
 
-      it(".mockReturnValueOnce", function() {
+      it('.mockReturnValueOnce', function() {
         jestSpy.mockReturnValueOnce(89);
 
         let result = operations.add(3, 4);
@@ -79,19 +79,19 @@ describe("STUBS", function() {
       });
     });
 
-    describe("mock implementation - depending on args", function() {
-      describe("sinon", function() {
+    describe('mock implementation - depending on args', function() {
+      describe('sinon', function() {
         beforeEach(() => {
-          sinonStub = sinon.stub(operations, "add");
+          sinonStub = sinon.stub(operations, 'add');
         });
 
         afterEach(() => {
           sinonStub.restore();
         });
 
-        it(".withArgs.returns", function() {
+        it('.withArgs.returns', function() {
           sinonStub.withArgs(42).returns(89);
-          sinonStub.withArgs(4, 9, 32).returns("OK");
+          sinonStub.withArgs(4, 9, 32).returns('OK');
 
           const noReturn = operations.add(1, 2);
           const result = operations.add(42);
@@ -99,22 +99,22 @@ describe("STUBS", function() {
 
           expect(noReturn).toEqual(undefined);
           expect(result).toEqual(89);
-          expect(result2).toEqual("OK");
+          expect(result2).toEqual('OK');
 
           sinonStub.restore();
         });
       });
 
-      describe("jest", () => {
+      describe('jest', () => {
         beforeEach(() => {
-          jestSpy = jest.spyOn(operations, "add");
+          jestSpy = jest.spyOn(operations, 'add');
         });
 
         afterEach(() => {
           jestSpy.mockRestore();
         });
 
-        it(".mockImplementation(function () {})", function() {
+        it('.mockImplementation(function () {})', function() {
           jestSpy.mockImplementation(function() {
             return 89;
           });
@@ -125,13 +125,13 @@ describe("STUBS", function() {
           expect(result).toEqual(89);
         });
 
-        it(".mockImplementation evaluating args", function() {
-          jestSpy = jest.spyOn(operations, "add").mockImplementation(function(a, b, c) {
+        it('.mockImplementation evaluating args', function() {
+          jestSpy = jest.spyOn(operations, 'add').mockImplementation(function(a, b, c) {
             if (a === 42) {
               return 89;
             }
             if (a === 4 && b === 9 && c === 32) {
-              return "OK";
+              return 'OK';
             }
           });
 
@@ -141,7 +141,7 @@ describe("STUBS", function() {
 
           expect(noReturn).toEqual(undefined);
           expect(result).toEqual(89);
-          expect(result2).toEqual("OK");
+          expect(result2).toEqual('OK');
 
           jestSpy.mockRestore();
         });

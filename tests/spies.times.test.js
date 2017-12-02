@@ -1,6 +1,6 @@
-const sinon = require("sinon");
+const sinon = require('sinon');
 
-describe("SPIES", function() {
+describe('SPIES', function() {
   let sinonSpy;
   let jestSpy;
 
@@ -19,25 +19,25 @@ describe("SPIES", function() {
     jestSpy = null;
   });
 
-  describe("counting times", function() {
+  describe('counting times', function() {
     /**
      * sinon
      */
-    describe("sinon", function() {
-      it("spy.calledOnce", function() {
+    describe('sinon', function() {
+      it('spy.calledOnce', function() {
         sinonSpy();
 
         expect(sinonSpy.calledOnce).toEqual(true);
       });
 
-      it("spy.calledTwice", function() {
+      it('spy.calledTwice', function() {
         sinonSpy();
         sinonSpy();
 
         expect(sinonSpy.calledTwice).toEqual(true);
       });
 
-      it("spy.calledThrice", function() {
+      it('spy.calledThrice', function() {
         sinonSpy();
         sinonSpy();
         sinonSpy();
@@ -45,7 +45,7 @@ describe("SPIES", function() {
         expect(sinonSpy.calledThrice).toEqual(true);
       });
 
-      it("spy.callCount", function() {
+      it('spy.callCount', function() {
         sinonSpy();
 
         expect(sinonSpy.callCount).toEqual(1);
@@ -63,8 +63,8 @@ describe("SPIES", function() {
     /**
      * jest
      */
-    describe("jest", function() {
-      it("spy.mock.calls.length", function() {
+    describe('jest', function() {
+      it('spy.mock.calls.length', function() {
         jestSpy();
 
         expect(jestSpy.mock.calls.length).toEqual(1);
@@ -74,13 +74,13 @@ describe("SPIES", function() {
         expect(jestSpy.mock.calls.length).toEqual(2);
       });
 
-      it("expect .toHaveBeenCalled", function() {
+      it('expect .toHaveBeenCalled', function() {
         jestSpy();
 
         expect(jestSpy).toHaveBeenCalled();
       });
 
-      it("expect .toHaveBeenCalledTimes", function() {
+      it('expect .toHaveBeenCalledTimes', function() {
         jestSpy();
 
         expect(jestSpy).toHaveBeenCalledTimes(1);
