@@ -1,7 +1,21 @@
-# Sinon Jest Cheatsheet
+# Sinon # Jest (a cheatsheet).
+
+Some examples on how to achieve the same goal with either of both libraries: [sinon](http://sinonjs.org/) and [jest](http://facebook.github.io/jest/).
+Also some of those goals achievable only by one of these tools.
+
+###### Clone the repo:
+```
+git clone https://github.com/maurocarrero/sinon-jest-cheatsheet.git
+```
+
+###### Install and run tests:
+
+```
+npm install
+``` 
 
 ## Table of Contents
-##### Spies
+##### [Spies](#spies)
 1. [Create Spies](#create-spies)
 2. [Are they called?](#are-they-called)
 3. [How many times?](#how-many-times)
@@ -11,9 +25,10 @@
 7. [Custom implementation](#custom-implementation)
 8. [Conditional custom implementation](#custom-implementation)
 
-##### Jest specific
+##### [Jest specific](#jest-specific)
 9. [Snapshot testing](#snapshot-testing)
 
+<a name="spies"></a>
 ## Spies
 
 ### 1. Create spies: <a name="create-spies"></a> 
@@ -175,6 +190,7 @@ jest.spyOn(operations, 'add')
   });
 ```
 
+<a name="jest-specific"></a>
 ## Jest specific
 
 ### 9. Snapshot testing <a name="snapshot-testing"></a>

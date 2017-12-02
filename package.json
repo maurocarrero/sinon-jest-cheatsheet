@@ -3,7 +3,12 @@
   "version": "0.0.0",
   "description": "A cheatsheet and examples comparing sinon with jest mocks.",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maurocarrero/sinon-jest-cheatsheet"
+  },
   "scripts": {
+    "postinstall": "npm run test:watch",
     "test": "jest --verbose",
     "test:watch": "jest --watch"
   },
