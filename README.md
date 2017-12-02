@@ -25,9 +25,10 @@ npm install
 6. [Restore original methods](#restore-original-method)
 7. [Return value](#return-value)
 8. [Custom implementation](#custom-implementation)
+9. [Poking into React component methods](#react-component-methods)
 
 ##### [Jest specific](#jest-specific)
-9. [Snapshot testing](#snapshot-testing)
+1. [Snapshot testing](#snapshot-testing)
 
 <a name="spies"></a>
 ## Spies <a name="create-spies"></a>
@@ -197,11 +198,36 @@ jest.spyOn(operations, 'add')
   });
 ```
 
+<a name="react-component-methods"></a>
+### 9. Poking into React components methods:
+
+Suppose `foo` is called when mounting Button.
+
+###### sinon
+
+```
+sinon.spy(Button.prototype, 'foo');
+
+wrapper = shallow(<Button />);
+
+expect(Button.prototype.foo.called).toEqual(true);
+```
+
+###### jest
+
+```
+jest.spyOn(Button.prototype, 'foo');
+
+wrapper = shallow(<Button />);
+
+expect(Button.prototype.foo).toHaveBeenCalled();
+```
+
 <a name="jest-specific"></a>
 ## Jest specific
 
 <a name="snapshot-testing"></a>
-### 9. Snapshot testing:
+### 1. Snapshot testing:
 
 > Clean obsolete snapshots: `npm t -- -u`
 > Update snapshots: `npm t -- --updateSnapshot`
