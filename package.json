@@ -1,7 +1,7 @@
 {
   "name": "sinon-jest-cheatsheet",
   "version": "0.0.0",
-  "description": "A cheatsheet and examples comparing sinon with jest mocks.",
+  "description": "Some examples on how to achieve the same goal with either of both libraries: sinon and jest. Also some of those goals achievable only by one of these tools.",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -22,10 +22,8 @@
   "devDependencies": {
     "create-react-class": "^15.6.2",
     "jest": "^21.2.1",
+    "react": "^16.2.0",
     "react-test-renderer": "^16.2.0",
     "sinon": "^4.1.2"
-  },
-  "dependencies": {
-    "react": "^16.2.0"
   }
 }

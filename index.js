@@ -1,1 +1,1 @@
-console.log('Please run `npm t`');
+console.log('Please clone and run `npm t`');
