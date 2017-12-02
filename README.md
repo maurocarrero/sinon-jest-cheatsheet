@@ -29,9 +29,9 @@ npm install
 9. [Snapshot testing](#snapshot-testing)
 
 <a name="spies"></a>
-## Spies
+## Spies <a name="create-spies"></a>
 
-### 1. Create spies: <a name="create-spies"></a> 
+### 1. Create spies:  
 
 ###### sinon
 
@@ -44,7 +44,8 @@ const spy = sinon.spy()
 const spy = jest.fn()
 ```
 
-### 2. Know if they are called: <a name="are-they-called"></a>
+<a name="are-they-called"></a>
+### 2. Know if they are called: 
 
 ###### sinon
 
@@ -62,7 +63,8 @@ spy.mock.calls.length >= 1;
 expect(spy).toHaveBeenCalled();
 ```
 
-### 3. How many times are called: <a name="how-many-times"></a>
+<a name="how-many-times"></a>
+### 3. How many times are called: 
 
 ###### sinon
 
@@ -82,7 +84,8 @@ spy.mock.calls.length === n;
 expect(spy).toHaveBeenCalledTimes(n);
 ```
 
-### 4. Checking arguments: <a name="checking-arguments"></a>
+<a name="checking-arguments"></a>
+### 4. Checking arguments:
 
 ###### sinon
 
@@ -116,7 +119,8 @@ expect(spy).toHaveBeenLastCalledWith(1, 'Hey');
 .toHaveBeenCalledWith(expect.stringMatching(regexp));
 ```
 
-### 5. Spy on objects' methods <a name="spy-on-objects-method"></a>
+<a name="spy-on-objects-method"></a>
+### 5. Spy on objects' methods 
 
 ###### sinon
 
@@ -130,7 +134,8 @@ sinon.spy(someObject, 'aMethod');
 jest.spyOn(someObject, 'aMethod');
 ```
 
-### 6. Restore original method <a name="restore-original-method"></a>
+<a name="restore-original-method"></a>
+### 6. Restore original method 
 
 ###### sinon
 
@@ -144,8 +149,8 @@ someObject.aMethod.restore();
 someObject.aMethod.mockRestore();
 ```
 
-### 7. Spy on method and return custom implementation <a name="custom-implementation"></a>
-
+<a name="custom-implementation"></a>
+### 7. Spy on method and return custom implementation 
 ###### sinon
 
 ```
@@ -165,7 +170,8 @@ sinon.stub(operations, 'add')
     .mockReturnValueOnce(89);
 ```
 
-### 8. Conditional custom implementation <a name="conditional-custom-implementation"></a>
+<a name="conditional-custom-implementation"></a>
+### 8. Conditional custom implementation 
 
         
 ###### sinon
@@ -193,7 +199,8 @@ jest.spyOn(operations, 'add')
 <a name="jest-specific"></a>
 ## Jest specific
 
-### 9. Snapshot testing <a name="snapshot-testing"></a>
+<a name="snapshot-testing"></a>
+### 9. Snapshot testing 
 
 > Clean obsolete snapshots:
 >
