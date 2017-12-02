@@ -202,11 +202,7 @@ jest.spyOn(operations, 'add')
 <a name="snapshot-testing"></a>
 ### 9. Snapshot testing 
 
-> Clean obsolete snapshots:
->
-> npm t -- -u
->
-> $(npm bin)/jest -u
+> Clean obsolete snapshots: `npm t -- -u`
 
 ###### snapshot of a function output
 
