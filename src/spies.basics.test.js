@@ -1,6 +1,6 @@
 const sinon = require('sinon');
 
-describe('SPIES', function () {
+describe('SPIES - Basics', function () {
   let sinonSpy;
   let jestSpy;
 
@@ -19,7 +19,7 @@ describe('SPIES', function () {
     jestSpy = null;
   })
 
-  describe('a spy', function () {
+  describe('just a spy', function () {
     it('sinon.spy', function () {
       sinonSpy();
 

@@ -21,7 +21,7 @@ describe('STUBS', function () {
     jestSpy = null;
   })
 
-  describe('sinon\'s stub', function () {
+  describe('sinon\'s stub and jest\'s spyOn', function () {
     describe('wrap a method', () => {
       it('sinon.stub(obj, \'method\')', function () {
         sinonStub = sinon.stub(operations, 'add');
@@ -62,6 +62,46 @@ describe('STUBS', function () {
 
         expect(jestSpy).toHaveBeenCalled();
         expect(result).toEqual(89);
+      });
+    });
+
+    describe('customize implementation depending on arguments passed', () => {
+      it('.withArgs.returns', function () {
+        sinonStub = sinon.stub(operations, 'add')
+        sinonStub.withArgs(42).returns(89);
+        sinonStub.withArgs(4, 9, 32).returns('OK');
+
+        const noReturn = operations.add(1, 2);
+        const result = operations.add(42);
+        const result2 = operations.add(4, 9, 32);
+
+        expect(noReturn).toEqual(undefined);
+        expect(result).toEqual(89);
+        expect(result2).toEqual('OK');
+
+        sinonStub.restore();
+      });
+
+      it('.mockImplementation', function () {
+        jestSpy = jest.spyOn(operations, 'add')
+          .mockImplementation(function (a, b, c) {
+            if (a === 42) {
+              return 89;
+            }
+            if (a === 4 && b === 9 && c === 32) {
+              return 'OK';
+            }
+          });
+
+        const noReturn = operations.add(1, 2);
+        const result = operations.add(42);
+        const result2 = operations.add(4, 9, 32);
+
+        expect(noReturn).toEqual(undefined);
+        expect(result).toEqual(89);
+        expect(result2).toEqual('OK');
+
+        jestSpy.mockRestore();
       });
     })
   });

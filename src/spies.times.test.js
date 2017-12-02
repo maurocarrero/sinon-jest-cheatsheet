@@ -53,7 +53,7 @@ describe('SPIES', function () {
         expect(sinonSpy.calledTwice).toEqual(true);
       });
 
-      it('spy.calledOnce', function () {
+      it('spy.calledThrice', function () {
         sinonSpy();
         sinonSpy();
         sinonSpy();
