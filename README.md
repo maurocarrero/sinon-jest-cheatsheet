@@ -23,8 +23,8 @@ npm install
 4. [Checking arguments](#checking-arguments)
 5. [Spy on objects methods](#spy-on-objects-method)
 6. [Restore original methods](#restore-original-method)
-7. [Custom implementation](#custom-implementation)
-8. [Conditional custom implementation](#custom-implementation)
+7. [Return value](#return-value)
+8. [Custom implementation](#custom-implementation)
 
 ##### [Jest specific](#jest-specific)
 9. [Snapshot testing](#snapshot-testing)
@@ -150,8 +150,8 @@ someObject.aMethod.restore();
 someObject.aMethod.mockRestore();
 ```
 
-<a name="custom-implementation"></a>
-### 7. Spy on method and return custom implementation 
+<a name="return-value"></a>
+### 7. Spy on method and return value:
 ###### sinon
 
 ```
@@ -171,8 +171,8 @@ sinon.stub(operations, 'add')
     .mockReturnValueOnce(89);
 ```
 
-<a name="conditional-custom-implementation"></a>
-### 8. Conditional custom implementation 
+<a name="custom-implementation"></a>
+### 8. Custom implementation:
 
         
 ###### sinon
@@ -201,10 +201,9 @@ jest.spyOn(operations, 'add')
 ## Jest specific
 
 <a name="snapshot-testing"></a>
-### 9. Snapshot testing 
+### 9. Snapshot testing:
 
 > Clean obsolete snapshots: `npm t -- -u`
->
 > Update snapshots: `npm t -- --updateSnapshot`
 
 ###### snapshot of a function output
