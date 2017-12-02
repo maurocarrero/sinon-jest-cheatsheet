@@ -52,5 +52,65 @@ describe('SPIES', function () {
         expect(jestSpy).toHaveBeenCalledWith(1, 2);
       });
     });
+
+    it('expect .toHaveBeenLastCalledWith', function () {
+      jestSpy();
+      jestSpy();
+      jestSpy();
+      jestSpy(7);
+
+      expect(jestSpy).toHaveBeenLastCalledWith(7);
+    });
+
+    describe('expect .toHaveBeenCalledWith', function () {
+      it('expect.anything()', function () {
+        jestSpy(7);
+
+        expect(jestSpy).toHaveBeenLastCalledWith(expect.anything());
+      });
+
+      it('expect.any(constructor)', function () {
+        jestSpy(7);
+
+        expect(jestSpy).toHaveBeenLastCalledWith(expect.any(Number));
+      });
+
+      it('expect.arrayContaining([ values ])', function () {
+        jestSpy([ 7, 27, 33, 48 ]);
+
+        expect(jestSpy).toHaveBeenLastCalledWith(expect.arrayContaining([ 33, 48 ]));
+      });
+
+      it('expect.objectContaining({ props })', function () {
+        const mock = {
+          id: 1,
+          name: 'Peteco'
+        };
+        jestSpy(mock);
+
+        expect(jestSpy).toHaveBeenCalledWith(
+          expect.objectContaining({ id: mock.id })
+        );
+        expect(jestSpy).toHaveBeenLastCalledWith(
+          expect.objectContaining({ name: mock.name })
+        );
+      });
+
+      it('expect.stringContaining(string)', function () {
+        jestSpy('This was all about foo bar.');
+
+        expect(jestSpy).toHaveBeenCalledWith(
+          expect.stringContaining('foo')
+        );
+      });
+
+      it('expect.stringMatching(regexp)', function () {
+        jestSpy('This was all about foo bar.');
+
+        expect(jestSpy).toHaveBeenCalledWith(
+          expect.stringMatching(/^This/)
+        );
+      });
+    });
   });
 });

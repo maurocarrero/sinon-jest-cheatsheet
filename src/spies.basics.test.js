@@ -19,18 +19,38 @@ describe('SPIES - Basics', function () {
     jestSpy = null;
   })
 
-  describe('just a spy', function () {
-    it('sinon.spy', function () {
-      sinonSpy();
+  describe('called | not called', function () {
+    describe('sinon: sinon.spy', function () {
+      it('spy.called', function () {
+        expect(sinonSpy.called).toEqual(false);
 
-      expect(sinonSpy.called).toEqual(true);
-    });
+        sinonSpy();
 
-    it('jest.fn', function () {
-      jestSpy();
+        expect(sinonSpy.called).toEqual(true);
+      });
 
-      expect(jestSpy.mock.calls.length).toEqual(1);
-      expect(jestSpy).toHaveBeenCalled();
+      it('spy.notCalled', function () {
+        expect(sinonSpy.notCalled).toEqual(true);
+
+        sinonSpy();
+
+        expect(sinonSpy.notCalled).toEqual(false);
+      });
+
+    })
+    describe('jest: jest.fn', function () {
+      it('.mock.calls.length', function () {
+        jestSpy();
+
+        expect(jestSpy.mock.calls.length).toEqual(1);
+      });
+
+      it('expect(spy).toHaveBeenCalled', function () {
+        jestSpy();
+
+        expect(jestSpy).toHaveBeenCalled();
+      });
     });
   });
+
 });

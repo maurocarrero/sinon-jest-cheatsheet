@@ -45,7 +45,7 @@ describe('SPIES', function () {
 
       expect(jestSpy).toHaveBeenCalled();
 
-      jestSpy.mockClear();
+      jestSpy.mockRestore();
     });
   });
 });
