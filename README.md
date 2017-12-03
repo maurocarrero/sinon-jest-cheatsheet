@@ -29,6 +29,7 @@ npm install
 
 ##### [Jest specific](#jest-specific)
 1. [Snapshot testing](#snapshot-testing)
+2. [Automock](#automock)
 
 <a name="spies"></a>
 ## Spies <a name="create-spies"></a>
@@ -312,6 +313,7 @@ const tree = renderer.create(
   ).toJSON()
 ```
 
+<a name="automock"></a>
 ### 2. Automock
 
 Jest disabled the [automock](https://facebook.github.io/jest/blog/2016/09/01/jest-15.html#disabled-automocking) feature by default.
