@@ -7,14 +7,14 @@ const Button = require('../src/react-component/Button');
 
 let httpServiceMock = require('../src/react-component/httpService');
 
-describe('mocking dependencies', function () {
+describe('mocking dependencies', function() {
   const EXPECTED = 'url was requested: https://api.github.com/';
   const INITIAL = 'initial doSomething';
 
   let wrapper;
 
-  describe('sinon', function () {
-    it('should call the mocked service', function (done) {
+  describe('sinon', function() {
+    it('should call the mocked service', function(done) {
       const stub = sinon.stub(Button.prototype, 'doSomething').callThrough();
 
       wrapper = shallow(React.createElement(Button));
@@ -46,8 +46,8 @@ describe('mocking dependencies', function () {
     });
   });
 
-  describe('jest', function () {
-    it('should call the mocked service', function (done) {
+  describe('jest', function() {
+    it('should call the mocked service', function(done) {
       const jestSpy = jest.spyOn(Button.prototype, 'doSomething');
 
       wrapper = shallow(React.createElement(Button));

@@ -105,8 +105,8 @@ describe('STUBS', function() {
           sinonStub.restore();
         });
 
-        it('.callsFake', function () {
-          sinonStub.callsFake(function () {
+        it('.callsFake', function() {
+          sinonStub.callsFake(function() {
             return 'Peteco';
           });
           expect(operations.add(1, 2)).toEqual('Peteco');
@@ -161,15 +161,15 @@ describe('STUBS', function() {
         beforeEach(() => {
           sinonStub = sinon.stub(operations, 'add');
           sinonStub.onCall(0).returns('Peteco');
-          sinonStub.onCall(1).returns('Rambla')
-          sinonStub.onCall(2).returns('Palta')
+          sinonStub.onCall(1).returns('Rambla');
+          sinonStub.onCall(2).returns('Palta');
         });
 
         afterEach(() => {
           sinonStub.restore();
         });
 
-        it('.onCall', function () {
+        it('.onCall', function() {
           expect(operations.add()).toEqual('Peteco');
           expect(operations.add()).toEqual('Rambla');
           expect(operations.add()).toEqual('Palta');
@@ -185,7 +185,7 @@ describe('STUBS', function() {
           jestSpy.mockRestore();
         });
 
-        it('.mockImplementationOnce', function () {
+        it('.mockImplementationOnce', function() {
           jestSpy.mockReturnValueOnce('Peteco');
           jestSpy.mockReturnValueOnce('Rambla');
           jestSpy.mockReturnValueOnce('Palta');

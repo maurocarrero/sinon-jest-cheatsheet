@@ -6,14 +6,13 @@ module.exports = class Button extends React.Component {
     super();
     this.state = {
       task: 'Nothing yet'
-    }
+    };
     this.doSomething = this.doSomething.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
   }
 
   clickHandler() {
-    get(GITHUB_URL)
-      .then(this.doSomething);
+    get(GITHUB_URL).then(this.doSomething);
   }
 
   doSomething(task) {
@@ -37,8 +36,7 @@ module.exports = class Button extends React.Component {
       'Click me'
     );
   }
-}
-
+};
 
 // TODO: Using create-react-class I was unable to spy on methods. Dig into this.
 
