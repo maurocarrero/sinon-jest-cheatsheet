@@ -40,7 +40,7 @@ as well as pre-programmed expectations.
 3. **Fake XHR and server**.
 
 
-## [Jest ]
+## [Jest](http://facebook.github.io/jest/docs/en/api.html)
 
 ### Mock Functions
 1. getMockName
