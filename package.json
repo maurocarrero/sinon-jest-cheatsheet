@@ -8,7 +8,7 @@
     "url": "https://github.com/maurocarrero/sinon-jest-cheatsheet"
   },
   "scripts": {
-    "postinstall": "npm run test:watch",
+    "postinstall": "CI=true npm run test",
     "prettier": "prettier --config .prettierrc --write ./{src,tests}/**/*.js",
     "test": "jest --env=jsdom",
     "test:watch": "jest --env=jsdom --watch"
