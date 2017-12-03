@@ -1,3 +1,7 @@
 language: node_js
 node_js:
   - 'lts/*'
+install:
+  - npm config ls
+  - npm install
+  - npm t
