@@ -34,6 +34,16 @@
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/tests/setupTests.js",
+    "unmockedModulePathPatterns": [
+      "<rootDir>/src/react-component/Button.js",
+      "<rootDir>/node_modules/axios",
+      "<rootDir>/node_modules/enzyme",
+      "<rootDir>/node_modules/enzyme-adapter-react-16",
+      "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/react-dom",
+      "<rootDir>/node_modules/react-test-renderer",
+      "<rootDir>/node_modules/sinon"
+    ],
     "verbose": true
   }
 }

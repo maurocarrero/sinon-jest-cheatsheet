@@ -1,22 +1,30 @@
 const React = require('react');
+const { get, GITHUB_URL } = require('./httpService');
 
 module.exports = class Button extends React.Component {
   constructor() {
     super();
+    this.state = {
+      task: 'Nothing yet'
+    }
     this.doSomething = this.doSomething.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
   }
 
   clickHandler() {
-    return 'clicked';
+    get(GITHUB_URL)
+      .then(this.doSomething);
   }
 
   doSomething(task) {
+    this.setState({
+      task
+    });
     return task;
   }
 
   componentDidMount() {
-    this.doSomething('something');
+    this.doSomething('initial doSomething');
     return 'componentDidMount';
   }
 

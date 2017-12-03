@@ -1,5 +1,8 @@
 const sinon = require('sinon');
-const operations = require('../src/index');
+
+// Unmocking operations dependency
+jest.unmock('../src/operations');
+const operations = require('../src/operations');
 
 describe('STUBS', function() {
   let sinonStub;

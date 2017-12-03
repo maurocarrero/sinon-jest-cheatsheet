@@ -22,7 +22,7 @@ npm install
 3. [How many times?](#how-many-times)
 4. [Checking arguments](#checking-arguments)
 5. [Spy on objects methods](#spy-on-objects-method)
-6. [Restore original methods](#restore-original-method)
+6. [Reset and Restore original method](#restore-original-method)
 7. [Return value](#return-value)
 8. [Custom implementation](#custom-implementation)
 9. [Poking into React component methods](#react-component-methods)
@@ -137,9 +137,28 @@ jest.spyOn(someObject, 'aMethod');
 ```
 
 <a name="restore-original-method"></a>
-### 6. Restore original method 
+### 6. Reset and Restore original method 
 
 ###### sinon
+
+reset both, history and behavior:
+
+```
+stub.reset();
+```
+
+reset call history:
+
+```
+stub.resetHistory();
+```
+
+reset behaviour:
+
+```
+stub.resetBehavior()
+```
+restore (remove mock):
 
 ```
 someObject.aMethod.restore();
@@ -269,6 +288,7 @@ expect(sinonSpy.called).toEqual(true);
 ### 1. Snapshot testing:
 
 > Clean obsolete snapshots: `npm t -- -u`
+>
 > Update snapshots: `npm t -- --updateSnapshot`
 
 ###### snapshot of a function output
@@ -292,4 +312,56 @@ const tree = renderer.create(
   ).toJSON()
 ```
 
+### 2. Automock
 
+Jest disabled the [automock](https://facebook.github.io/jest/blog/2016/09/01/jest-15.html#disabled-automocking) feature by default.
+Enabling it again from the setup file `./tests/setupTests`:
+
+```
+jest.enableAutomock();
+```
+
+Now all dependencies are mocked, we must whitelist some of them, from `package.json`:
+
+```
+"jest": {
+    "unmockedModulePathPatterns": [
+      "<rootDir>/src/react-component/Button.js",
+      "<rootDir>/node_modules/axios",
+      "<rootDir>/node_modules/enzyme",
+      "<rootDir>/node_modules/enzyme-adapter-react-16",
+      "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/react-dom",
+      "<rootDir>/node_modules/react-test-renderer",
+      "<rootDir>/node_modules/sinon"
+    ]
+    ...
+```
+
+or otherwise unmock them from the test:
+
+```
+jest.unmock('./path/to/dep');
+const Comp = require('../Comp'); // depends on dep, now will use the original
+```
+
+##### Using the mock with spies
+
+```
+// MOCK: path/to/original/__mocks__/myService
+module.exports = {
+  get: jest.fn()
+};
+```
+
+then from the test:
+
+```
+const mockService = require('path/to/original/myService');
+```
+
+```
+// Trigger the use of the service from tested component
+wrapper.simulate('click');
+expect(mockService.get).toHaveBeenCalled();
+```
