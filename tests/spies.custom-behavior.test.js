@@ -39,6 +39,19 @@ describe('STUBS', function() {
         expect(sinonStub.calledOnce).toEqual(true);
         expect(result).toEqual(89);
       });
+
+      it('.withArgs.returns', function() {
+        sinonStub.withArgs(42).returns(89);
+        sinonStub.withArgs(4, 9, 32).returns('OK');
+
+        const noReturn = operations.add(1, 2);
+        const result = operations.add(42);
+        const result2 = operations.add(4, 9, 32);
+
+        expect(noReturn).toEqual(undefined);
+        expect(result).toEqual(89);
+        expect(result2).toEqual('OK');
+      });
     });
 
     describe('jest', () => {
@@ -79,7 +92,7 @@ describe('STUBS', function() {
       });
     });
 
-    describe('mock implementation - depending on args', function() {
+    describe('mocking implementation', function() {
       describe('sinon', function() {
         beforeEach(() => {
           sinonStub = sinon.stub(operations, 'add');
@@ -89,19 +102,11 @@ describe('STUBS', function() {
           sinonStub.restore();
         });
 
-        it('.withArgs.returns', function() {
-          sinonStub.withArgs(42).returns(89);
-          sinonStub.withArgs(4, 9, 32).returns('OK');
-
-          const noReturn = operations.add(1, 2);
-          const result = operations.add(42);
-          const result2 = operations.add(4, 9, 32);
-
-          expect(noReturn).toEqual(undefined);
-          expect(result).toEqual(89);
-          expect(result2).toEqual('OK');
-
-          sinonStub.restore();
+        it('.callsFake', function () {
+          sinonStub.callsFake(function () {
+            return 'Peteco';
+          });
+          expect(operations.add(1, 2)).toEqual('Peteco');
         });
       });
 
@@ -144,6 +149,47 @@ describe('STUBS', function() {
           expect(result2).toEqual('OK');
 
           jestSpy.mockRestore();
+        });
+      });
+    });
+
+    describe('different implementations on different calls', function() {
+      describe('sinon', function() {
+        beforeEach(() => {
+          sinonStub = sinon.stub(operations, 'add');
+          sinonStub.onCall(0).returns('Peteco');
+          sinonStub.onCall(1).returns('Rambla')
+          sinonStub.onCall(2).returns('Palta')
+        });
+
+        afterEach(() => {
+          sinonStub.restore();
+        });
+
+        it('.onCall', function () {
+          expect(operations.add()).toEqual('Peteco');
+          expect(operations.add()).toEqual('Rambla');
+          expect(operations.add()).toEqual('Palta');
+        });
+      });
+
+      describe('jest', () => {
+        beforeEach(() => {
+          jestSpy = jest.spyOn(operations, 'add');
+        });
+
+        afterEach(() => {
+          jestSpy.mockRestore();
+        });
+
+        it('.mockImplementationOnce', function () {
+          jestSpy.mockReturnValueOnce('Peteco');
+          jestSpy.mockReturnValueOnce('Rambla');
+          jestSpy.mockReturnValueOnce('Palta');
+
+          expect(operations.add()).toEqual('Peteco');
+          expect(operations.add()).toEqual('Rambla');
+          expect(operations.add()).toEqual('Palta');
         });
       });
     });

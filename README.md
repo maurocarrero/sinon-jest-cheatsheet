@@ -153,12 +153,27 @@ someObject.aMethod.mockRestore();
 
 <a name="return-value"></a>
 ### 7. Spy on method and return value:
+
 ###### sinon
 
 ```
-sinon.stub(operations, 'add')
-    .returns(89);
+stub = sinon.stub(operations, 'add');
+stub.returns(89);
 ```
+
+```
+stub.withArgs(42).returns(89);
+stub.withArgs(4, 9, 32).returns('OK');
+```
+
+On different calls:
+
+```
+stub.onCall(1).returns(7)
+expect(fn()).not.toEqual(7);
+expect(fn()).toEqual(7);
+```
+
 
 ###### jest
 
@@ -167,9 +182,14 @@ sinon.stub(operations, 'add')
     .mockReturnValue(89);
 ```
 
+On different calls:
+
 ```
-sinon.stub(operations, 'add')
-    .mockReturnValueOnce(89);
+stub.mockReturnValueOnce(undefined)
+stub.mockReturnValueOnce(7);
+    
+expect(fn()).not.toEqual(7);
+expect(fn()).toEqual(7);
 ```
 
 <a name="custom-implementation"></a>
@@ -179,10 +199,13 @@ sinon.stub(operations, 'add')
 ###### sinon
 
 ```
-stub = sinon.stub(operations, 'add');
-stub.withArgs(42).returns(89);
-stub.withArgs(4, 9, 32).returns('OK');
+sinonStub.callsFake(function () {
+    return 'Peteco';
+});
+expect(operations.add(1, 2)).toEqual('Peteco');
 ```
+
+Different implementation on different call:
 
 ###### jest
 
