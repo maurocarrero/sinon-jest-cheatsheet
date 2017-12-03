@@ -105,7 +105,7 @@ expect(spy).toHaveBeenCalledTimes(n);
 
 ```
 // args[call][argIdx]
-spy.args[0,0]
+spy.args[0][0]
 ```
 
 ```

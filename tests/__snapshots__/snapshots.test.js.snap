@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`JEST: snapshot testing should match a React Component 1`] = `
+exports[`should match a React Component 1`] = `
 <button
   onClick={[Function]}
 >
@@ -8,4 +8,4 @@ exports[`JEST: snapshot testing should match a React Component 1`] = `
 </button>
 `;
 
-exports[`JEST: snapshot testing should match a function 1`] = `undefined`;
+exports[`should match a function 1`] = `undefined`;
