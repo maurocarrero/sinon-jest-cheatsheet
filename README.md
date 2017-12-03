@@ -17,10 +17,22 @@ What's inside? just this **README** file and many **unit tests** using jest as r
 git clone https://github.com/maurocarrero/sinon-jest-cheatsheet.git
 ```
 
-###### Install and run tests:
+###### Install:
 
 ```
 npm install
+``` 
+
+###### Run tests:
+
+```
+npm test
+``` 
+
+or use watch
+
+```
+npm run test:watch
 ``` 
 
 ## Table of Contents
