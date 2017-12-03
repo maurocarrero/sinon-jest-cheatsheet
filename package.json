@@ -9,9 +9,8 @@
   },
   "scripts": {
     "prettier": "prettier --config .prettierrc --write ./{src,tests}/**/*.js",
-    "test": "jest --env=jsdom",
-    "test:watch": "jest --env=jsdom --watch",
-    "test:ci": "CI=true npm run test"
+    "test": "CI=true jest --env=jsdom",
+    "test:watch": "jest --env=jsdom --watch"
   },
   "keywords": [
     "jest",

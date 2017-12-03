@@ -1,7 +1,1 @@
-install:
-  - npm install
-  - npm run test:ci
-language: "node"
-group: "stable"
-dist: "trusty"
-os: "linux"
+language: node_js
