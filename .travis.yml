@@ -1,2 +1,6 @@
 install:
   - npm install
+language: "node"
+group: "stable"
+dist: "trusty"
+os: "linux"
