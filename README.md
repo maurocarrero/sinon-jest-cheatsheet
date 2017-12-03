@@ -1,10 +1,15 @@
 # Sinon # Jest (a cheatsheet).
+[![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 Some examples on how to achieve the same goal with either of both libraries: [sinon](http://sinonjs.org/) and [jest](http://facebook.github.io/jest/).
 Also some of those goals achievable only by one of these tools.
 
+
+What's inside? just this **README** file and many **unit tests** using jest as runner. 
+
 ###### Clone the repo:
+
 ```
 git clone https://github.com/maurocarrero/sinon-jest-cheatsheet.git
 ```
@@ -16,7 +21,7 @@ npm install
 ``` 
 
 ## Table of Contents
-##### [Spies](#spies)
+
 1. [Create Spies](#create-spies)
 2. [Are they called?](#are-they-called)
 3. [How many times?](#how-many-times)
@@ -34,7 +39,10 @@ npm install
 <a name="spies"></a>
 ## Spies <a name="create-spies"></a>
 
-### 1. Create spies:  
+While **sinon** uses three different terms for its snooping functions: `spy`, `stub` and `mock`,
+**jest** uses mostly the term `mock function` for what'd be a spy/stub and `manual mock` or `mock` ...well, for mocks.
+
+### 1. Create spies:
 
 ###### sinon
 
@@ -53,13 +61,13 @@ const spy = jest.fn()
 ###### sinon
 
 ```
-spy.called === true;
-
+spy.called              // boolean
+spy.notCalled           // boolean
 ```
 
 ###### jest
 ```
-spy.mock.calls.length >= 1;
+spy.mock.calls.length   // number;
 ```
 
 ```
@@ -72,15 +80,15 @@ expect(spy).toHaveBeenCalled();
 ###### sinon
 
 ```
-spy.calledOnce
-spy.calledTwice
-spy.calledThrice
-spy.callCount
+spy.calledOnce      // boolean
+spy.calledTwice     // boolean
+spy.calledThrice    // boolean
+spy.callCount       // number
 ```
 
 ###### jest
 ```
-spy.mock.calls.length === n;
+spy.mock.calls.length // number;
 ```
 
 ```
@@ -367,3 +375,13 @@ const mockService = require('path/to/original/myService');
 wrapper.simulate('click');
 expect(mockService.get).toHaveBeenCalled();
 ```
+
+## Pending work
+Refer to [backlog](./BACKLOG.md).
+
+## Contributing
+Please, clone this repo and send your PR.
+Make sure to add your examples as unit tests and the explanation of 
+the case into the README file.
+If you will add something specific of a library, make sure that 
+is not somehow achievable with the other ;)
