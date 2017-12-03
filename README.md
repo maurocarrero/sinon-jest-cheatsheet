@@ -223,6 +223,22 @@ wrapper = shallow(<Button />);
 expect(Button.prototype.foo).toHaveBeenCalled();
 ```
 
+###### can be used together
+
+```
+const jestSpy = jest.spyOn(Button.prototype, 'doSomething');
+const sinonSpy = sinon.spy(Button.prototype, 'doSomething');
+```
+
+```
+wrapper = shallow(React.createElement(Button));
+```
+
+```
+expect(jestSpy).toHaveBeenCalled();
+expect(sinonSpy.called).toEqual(true);
+```
+
 <a name="jest-specific"></a>
 ## Jest specific
 

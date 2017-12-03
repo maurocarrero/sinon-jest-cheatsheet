@@ -86,4 +86,19 @@ describe('poking into a React Component lifecycle method', function () {
       expect(jestClickHandlerSpy).toHaveBeenCalled();
     });
   });
+
+  describe('sinon && jest', function () {
+    it('spying both at a time', function () {
+      const jestSpy = jest.spyOn(Button.prototype, 'doSomething');
+      const sinonSpy = sinon.spy(Button.prototype, 'doSomething');
+
+      expect(jestSpy).not.toHaveBeenCalled();
+      expect(sinonSpy.called).toEqual(false);
+
+      wrapper = shallow(React.createElement(Button));
+
+      expect(jestSpy).toHaveBeenCalled();
+      expect(sinonSpy.called).toEqual(true);
+    })
+  })
 });
