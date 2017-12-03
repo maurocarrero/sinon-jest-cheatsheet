@@ -9,7 +9,7 @@
   },
   "scripts": {
     "prettier": "prettier --config .prettierrc --write ./{src,tests}/**/*.js",
-    "test": "CI=true jest --env=jsdom",
+    "test": "jest --env=jsdom",
     "test:watch": "jest --env=jsdom --watch"
   },
   "keywords": [
