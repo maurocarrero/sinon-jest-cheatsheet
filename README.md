@@ -307,12 +307,120 @@ expect(sinonSpy.called).toEqual(true);
 <a name="timers"></a>
 ### 10. Timers:
 
-[lolex](https://github.com/sinonjs/lolex)
-
 ###### sinon
+
+Fake the date:
+
+```
+const clock = sinon.useFakeTimers({
+  now: new Date(TIMESTAMP)
+});
+```
+
+Fake the ticks:
+
+```
+const clock = sinon.useFakeTimers({
+  toFake: [ 'nextTick' ]
+});
+```
+
+Restore it:
+
+```
+clock.restore();
+```
+
+###### jest
+
+Enable fake timers:
+
+```
+jest.useFakeTimers();
+```
+
+```
+setTimeout(() => {
+    setTimeout(() => {
+        console.log('Don Inodoro!');
+    }, 200);
+    console.log('Negociemos');
+}, 100);
+```
+
+Fast-forward until all timers have been executed:
+
+```
+jest.runAllTimers(); // Negociemos Don Inodoro!
+```
+
+Run pending timers, avoid nested timers:
+
+```
+jest.runOnlyPendingTimers(); // Negociemos 
+jest.runOnlyPendingTimers(); // Don Inodoro! 
+```
+
+Fast-forward until the value (in millis) and run all timers in the path:
+
+```
+jest.runTimersToTime(100); // Negociemos
+jest.runTimersToTime(200); // Don Inodoro!
 
 ```
 
+> jest 22.0.0: .advanceTimersByTime
+
+Clear all timers:
+
+```
+jest.clearAllTimers();
+```
+
+##### Date: Use Lolex 
+
+`Jest` does not provide a way of faking the Date, we use here [lolex](https://github.com/sinonjs/lolex),
+a library extracted from `sinon`, with a implementation of the **timer APIs**: *setTimeout*, *clearTimeout*, 
+*setImmediate*, *clearImmediate*, *setInterval*, *clearInterval*, *requetsAnimationFrame* and *clearAnimationFrame*, 
+a **clock instance** that controls the flow of time, and a **Date** implementation.
+
+```
+clock = lolex.install({
+  now: TIMESTAMP
+});
+```
+
+##### Fake the ticks:
+
+```
+clock = lolex.install({
+  toFake: [ 'nextTick' ]
+});
+
+let called = false;
+
+process.nextTick(function () {
+  called = true;
+});
+```
+
+Forces nextTick calls to flush synchronously:
+
+```
+clock.runAll();
+
+expect(called).toBeTruthy();
+```
+
+Trigger a tick:
+
+```
+clock.tick();
+```
+
+Restore it:
+```
+clock.uninstall();
 ```
 
 <a name="jest-specific"></a>
@@ -330,7 +438,6 @@ expect(sinonSpy.called).toEqual(true);
 ```
 expect(fn()).toMatchSnapshot();
 ```
-
 
 ###### snapshot of a React Component (using react-test-renderer)
 

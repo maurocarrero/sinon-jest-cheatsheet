@@ -3,40 +3,40 @@ const sinon = require('sinon');
 let sinonSpy;
 let jestSpy;
 
-beforeAll(function () {
+beforeAll(function() {
   sinonSpy = sinon.spy();
   jestSpy = jest.fn();
 });
 
-beforeEach(function () {
+beforeEach(function() {
   sinonSpy.reset();
   jestSpy.mockReset();
 });
 
-afterAll(function () {
+afterAll(function() {
   sinonSpy = null;
   jestSpy = null;
 });
 
-describe('counting times', function () {
+describe('counting times', function() {
   /**
    * sinon
    */
-  describe('sinon', function () {
-    it('spy.calledOnce', function () {
+  describe('sinon', function() {
+    it('spy.calledOnce', function() {
       sinonSpy();
 
       expect(sinonSpy.calledOnce).toEqual(true);
     });
 
-    it('spy.calledTwice', function () {
+    it('spy.calledTwice', function() {
       sinonSpy();
       sinonSpy();
 
       expect(sinonSpy.calledTwice).toEqual(true);
     });
 
-    it('spy.calledThrice', function () {
+    it('spy.calledThrice', function() {
       sinonSpy();
       sinonSpy();
       sinonSpy();
@@ -44,7 +44,7 @@ describe('counting times', function () {
       expect(sinonSpy.calledThrice).toEqual(true);
     });
 
-    it('spy.callCount', function () {
+    it('spy.callCount', function() {
       sinonSpy();
 
       expect(sinonSpy.callCount).toEqual(1);
@@ -62,8 +62,8 @@ describe('counting times', function () {
   /**
    * jest
    */
-  describe('jest', function () {
-    it('spy.mock.calls.length', function () {
+  describe('jest', function() {
+    it('spy.mock.calls.length', function() {
       jestSpy();
 
       expect(jestSpy.mock.calls.length).toEqual(1);
@@ -73,13 +73,13 @@ describe('counting times', function () {
       expect(jestSpy.mock.calls.length).toEqual(2);
     });
 
-    it('expect .toHaveBeenCalled', function () {
+    it('expect .toHaveBeenCalled', function() {
       jestSpy();
 
       expect(jestSpy).toHaveBeenCalled();
     });
 
-    it('expect .toHaveBeenCalledTimes', function () {
+    it('expect .toHaveBeenCalledTimes', function() {
       jestSpy();
 
       expect(jestSpy).toHaveBeenCalledTimes(1);

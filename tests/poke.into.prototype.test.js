@@ -1,16 +1,15 @@
 const sinon = require('sinon');
 
-function Peteco() {
-}
+function Peteco() {}
 
-Peteco.prototype.hola = function () {
+Peteco.prototype.hola = function() {
   return 'hola';
 };
-Peteco.prototype.chau = function () {
+Peteco.prototype.chau = function() {
   return 'chau';
 };
 
-it("sinon.spy(Peteco.prototype, 'hola')", function () {
+it("sinon.spy(Peteco.prototype, 'hola')", function() {
   const holaSpy = sinon.spy(Peteco.prototype, 'hola');
   const chauSpy = sinon.spy(Peteco.prototype, 'chau');
 
@@ -21,7 +20,7 @@ it("sinon.spy(Peteco.prototype, 'hola')", function () {
   expect(chauSpy.called).toEqual(true);
 });
 
-it("jest.spyOn(Peteco.prototype, 'hola')", function () {
+it("jest.spyOn(Peteco.prototype, 'hola')", function() {
   const holaSpy = jest.spyOn(Peteco.prototype, 'hola');
   const chauSpy = jest.spyOn(Peteco.prototype, 'chau');
 

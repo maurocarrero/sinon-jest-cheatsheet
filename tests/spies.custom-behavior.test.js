@@ -7,18 +7,18 @@ const operations = require('../src/operations');
 let sinonStub;
 let jestSpy;
 
-beforeAll(function () {
+beforeAll(function() {
   sinonStub = sinon.spy();
   jestSpy = jest.fn();
 });
 
-afterAll(function () {
+afterAll(function() {
   sinonStub = null;
   jestSpy = null;
 });
 
-describe("sinon's stub and jest's spyOn", function () {
-  describe('sinon.stub', function () {
+describe("sinon's stub and jest's spyOn", function() {
+  describe('sinon.stub', function() {
     beforeEach(() => {
       sinonStub = sinon.stub(operations, 'add');
     });
@@ -27,13 +27,13 @@ describe("sinon's stub and jest's spyOn", function () {
       sinonStub.restore();
     });
 
-    it("sinon.stub(obj, 'method')", function () {
+    it("sinon.stub(obj, 'method')", function() {
       operations.add(1, 2);
 
       expect(sinonStub.calledOnce).toEqual(true);
     });
 
-    it('.returns', function () {
+    it('.returns', function() {
       sinonStub.returns(89);
 
       const result = operations.add(1, 2);
@@ -42,7 +42,7 @@ describe("sinon's stub and jest's spyOn", function () {
       expect(result).toEqual(89);
     });
 
-    it('.withArgs.returns', function () {
+    it('.withArgs.returns', function() {
       sinonStub.withArgs(42).returns(89);
       sinonStub.withArgs(4, 9, 32).returns('OK');
 
@@ -65,13 +65,13 @@ describe("sinon's stub and jest's spyOn", function () {
       jestSpy.mockRestore();
     });
 
-    it("jest.spyOn(obj, 'method')", function () {
+    it("jest.spyOn(obj, 'method')", function() {
       operations.add(3, 4);
 
       expect(jestSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('.mockReturnValue', function () {
+    it('.mockReturnValue', function() {
       jestSpy.mockReturnValue(89);
 
       const result = operations.add(3, 4);
@@ -80,7 +80,7 @@ describe("sinon's stub and jest's spyOn", function () {
       expect(result).toEqual(89);
     });
 
-    it('.mockReturnValueOnce', function () {
+    it('.mockReturnValueOnce', function() {
       jestSpy.mockReturnValueOnce(89);
 
       let result = operations.add(3, 4);
@@ -94,8 +94,8 @@ describe("sinon's stub and jest's spyOn", function () {
     });
   });
 
-  describe('mocking implementation', function () {
-    describe('sinon', function () {
+  describe('mocking implementation', function() {
+    describe('sinon', function() {
       beforeEach(() => {
         sinonStub = sinon.stub(operations, 'add');
       });
@@ -104,8 +104,8 @@ describe("sinon's stub and jest's spyOn", function () {
         sinonStub.restore();
       });
 
-      it('.callsFake', function () {
-        sinonStub.callsFake(function () {
+      it('.callsFake', function() {
+        sinonStub.callsFake(function() {
           return 'Peteco';
         });
         expect(operations.add(1, 2)).toEqual('Peteco');
@@ -121,8 +121,8 @@ describe("sinon's stub and jest's spyOn", function () {
         jestSpy.mockRestore();
       });
 
-      it('.mockImplementation(function () {})', function () {
-        jestSpy.mockImplementation(function () {
+      it('.mockImplementation(function () {})', function() {
+        jestSpy.mockImplementation(function() {
           return 89;
         });
 
@@ -132,8 +132,8 @@ describe("sinon's stub and jest's spyOn", function () {
         expect(result).toEqual(89);
       });
 
-      it('.mockImplementation evaluating args', function () {
-        jestSpy = jest.spyOn(operations, 'add').mockImplementation(function (a, b, c) {
+      it('.mockImplementation evaluating args', function() {
+        jestSpy = jest.spyOn(operations, 'add').mockImplementation(function(a, b, c) {
           if (a === 42) {
             return 89;
           }
@@ -155,8 +155,8 @@ describe("sinon's stub and jest's spyOn", function () {
     });
   });
 
-  describe('different implementations on different calls', function () {
-    describe('sinon', function () {
+  describe('different implementations on different calls', function() {
+    describe('sinon', function() {
       beforeEach(() => {
         sinonStub = sinon.stub(operations, 'add');
         sinonStub.onCall(0).returns('Peteco');
@@ -168,7 +168,7 @@ describe("sinon's stub and jest's spyOn", function () {
         sinonStub.restore();
       });
 
-      it('.onCall', function () {
+      it('.onCall', function() {
         expect(operations.add()).toEqual('Peteco');
         expect(operations.add()).toEqual('Rambla');
         expect(operations.add()).toEqual('Palta');
@@ -184,7 +184,7 @@ describe("sinon's stub and jest's spyOn", function () {
         jestSpy.mockRestore();
       });
 
-      it('.mockImplementationOnce', function () {
+      it('.mockImplementationOnce', function() {
         jestSpy.mockReturnValueOnce('Peteco');
         jestSpy.mockReturnValueOnce('Rambla');
         jestSpy.mockReturnValueOnce('Palta');

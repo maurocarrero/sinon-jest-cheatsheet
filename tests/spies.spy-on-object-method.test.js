@@ -3,7 +3,7 @@ const sinon = require('sinon');
 const someObject = {
   id: 43,
   model: 'C4',
-  getModel: function () {
+  getModel: function() {
     return this.model;
   }
 };
@@ -11,23 +11,23 @@ const someObject = {
 let sinonSpy;
 let jestSpy;
 
-beforeAll(function () {
+beforeAll(function() {
   sinonSpy = sinon.spy();
   jestSpy = jest.fn();
 });
 
-beforeEach(function () {
+beforeEach(function() {
   sinonSpy.reset();
   jestSpy.mockReset();
 });
 
-afterAll(function () {
+afterAll(function() {
   sinonSpy = null;
   jestSpy = null;
 });
 
-describe('spy on method', function () {
-  it("sinon.spy(obj, 'method')", function () {
+describe('spy on method', function() {
+  it("sinon.spy(obj, 'method')", function() {
     sinonSpy = sinon.spy(someObject, 'getModel');
 
     someObject.getModel();
@@ -37,7 +37,7 @@ describe('spy on method', function () {
     sinonSpy.restore();
   });
 
-  it("jest.spyOn(obj, 'method')", function () {
+  it("jest.spyOn(obj, 'method')", function() {
     jestSpy = jest.spyOn(someObject, 'getModel');
 
     someObject.getModel();

@@ -8,13 +8,13 @@ const Button = require('../src/react-component/Button');
 let wrapper;
 let instance;
 
-describe('sinon', function () {
+describe('sinon', function() {
   let sinonCDMSpy;
   let sinonRenderSpy;
   let sinonDoSomethingSpy;
   let sinonClickHandlerSpy;
 
-  beforeEach(function () {
+  beforeEach(function() {
     sinonCDMSpy = sinon.spy(Button.prototype, 'componentDidMount');
     sinonRenderSpy = sinon.spy(Button.prototype, 'render');
     sinonDoSomethingSpy = sinon.spy(Button.prototype, 'doSomething');
@@ -23,39 +23,39 @@ describe('sinon', function () {
     wrapper = shallow(React.createElement(Button));
   });
 
-  afterEach(function () {
+  afterEach(function() {
     sinonCDMSpy.restore();
     sinonRenderSpy.restore();
     sinonDoSomethingSpy.restore();
     sinonClickHandlerSpy.restore();
   });
 
-  it('spy on componentDidMount', function () {
+  it('spy on componentDidMount', function() {
     expect(sinonCDMSpy.called).toEqual(true);
   });
 
-  it('spy on render', function () {
+  it('spy on render', function() {
     expect(sinonRenderSpy.called).toEqual(true);
   });
 
-  it('spy on doSomething', function () {
+  it('spy on doSomething', function() {
     expect(sinonDoSomethingSpy.called).toEqual(true);
   });
 
-  it('spy on clickHandler', function () {
+  it('spy on clickHandler', function() {
     expect(sinonClickHandlerSpy.called).toEqual(false);
     wrapper.simulate('click');
     expect(sinonClickHandlerSpy.called).toEqual(true);
   });
 });
 
-describe('jest', function () {
+describe('jest', function() {
   let jestCDMSpy;
   let jestRenderSpy;
   let jestDoSomethingSpy;
   let jestClickHandlerSpy;
 
-  beforeEach(function () {
+  beforeEach(function() {
     jestCDMSpy = jest.spyOn(Button.prototype, 'componentDidMount');
     jestRenderSpy = jest.spyOn(Button.prototype, 'render');
     jestDoSomethingSpy = jest.spyOn(Button.prototype, 'doSomething');
@@ -64,30 +64,30 @@ describe('jest', function () {
     wrapper = shallow(React.createElement(Button));
   });
 
-  afterEach(function () {
+  afterEach(function() {
     jestCDMSpy.mockRestore();
     jestRenderSpy.mockRestore();
     jestDoSomethingSpy.mockRestore();
     jestClickHandlerSpy.mockRestore();
   });
 
-  it('spy on componentDidMount', function () {
+  it('spy on componentDidMount', function() {
     expect(jestCDMSpy).toHaveBeenCalled();
   });
 
-  it('spy on doSomething', function () {
+  it('spy on doSomething', function() {
     expect(jestDoSomethingSpy).toHaveBeenCalled();
   });
 
-  it('spy on clickHandler', function () {
+  it('spy on clickHandler', function() {
     wrapper.simulate('click');
 
     expect(jestClickHandlerSpy).toHaveBeenCalled();
   });
 });
 
-describe('sinon && jest', function () {
-  it('spying both at a time', function () {
+describe('sinon && jest', function() {
+  it('spying both at a time', function() {
     const jestSpy = jest.spyOn(Button.prototype, 'doSomething');
     const sinonSpy = sinon.spy(Button.prototype, 'doSomething');
 
