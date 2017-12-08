@@ -220,15 +220,15 @@ expect(fn()).toEqual(7);
 ###### jest
 
 ```
-sinon.stub(operations, 'add')
+jest.spyOn(operations, 'add')
     .mockReturnValue(89);
 ```
 
 On different calls:
 
 ```
-stub.mockReturnValueOnce(undefined)
-stub.mockReturnValueOnce(7);
+spy.mockReturnValueOnce(undefined)
+spy.mockReturnValueOnce(7);
     
 expect(fn()).not.toEqual(7);
 expect(fn()).toEqual(7);
