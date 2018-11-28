@@ -11,25 +11,25 @@ What's inside? just this **README** file and many **unit tests** using jest as r
 
 ###### Clone the repo:
 
-```
+```shell
 git clone https://github.com/maurocarrero/sinon-jest-cheatsheet.git
 ```
 
 ###### Install:
 
-```
+```shell
 npm install
 ``` 
 
 ###### Run tests:
 
-```
+```shell
 npm test
 ``` 
 
 or use watch
 
-```
+```shell
 npm run test:watch
 ``` 
 
@@ -60,12 +60,12 @@ While **sinon** uses three different terms for its snooping functions: `spy`, `s
 
 ###### sinon
 
-```
+```js
 const spy = sinon.spy()
 ```
 
 ###### jest
-```
+```js
 const spy = jest.fn()
 ```
 
@@ -74,17 +74,17 @@ const spy = jest.fn()
 
 ###### sinon
 
-```
+```js
 spy.called              // boolean
 spy.notCalled           // boolean
 ```
 
 ###### jest
-```
+```js
 spy.mock.calls.length   // number;
 ```
 
-```
+```js
 expect(spy).toHaveBeenCalled();
 ```
 
@@ -93,7 +93,7 @@ expect(spy).toHaveBeenCalled();
 
 ###### sinon
 
-```
+```js
 spy.calledOnce      // boolean
 spy.calledTwice     // boolean
 spy.calledThrice    // boolean
@@ -101,11 +101,11 @@ spy.callCount       // number
 ```
 
 ###### jest
-```
+```js
 spy.mock.calls.length // number;
 ```
 
-```
+```js
 expect(spy).toHaveBeenCalledTimes(n);
 ```
 
@@ -114,28 +114,28 @@ expect(spy).toHaveBeenCalledTimes(n);
 
 ###### sinon
 
-```
+```js
 // args[call][argIdx]
 spy.args[0][0]
 ```
 
-```
+```jsjs
 // spy.calledWith(...args)
 spy.calledWith(1, 'Hey')
 ```
 
 ###### jest
-```
+```js
 // mock.calls[call][argIdx]
 spy.mock.calls[0][0]
 ```
 
-```
+```js
 expect(spy).toHaveBeenCalledWith(1, 'Hey');
 expect(spy).toHaveBeenLastCalledWith(1, 'Hey');
 ```
 
-```
+```js
 .toHaveBeenCalledWith(expect.anything());
 .toHaveBeenCalledWith(expect.any(constructor));
 .toHaveBeenCalledWith(expect.arrayContaining([ values ]));
@@ -149,13 +149,13 @@ expect(spy).toHaveBeenLastCalledWith(1, 'Hey');
 
 ###### sinon
 
-```
+```js
 sinon.spy(someObject, 'aMethod');
 ```
 
 ###### jest
 
-```
+```js
 jest.spyOn(someObject, 'aMethod');
 ```
 
@@ -166,30 +166,30 @@ jest.spyOn(someObject, 'aMethod');
 
 reset both, history and behavior:
 
-```
+```js
 stub.reset();
 ```
 
 reset call history:
 
-```
+```js
 stub.resetHistory();
 ```
 
 reset behaviour:
 
-```
+```js
 stub.resetBehavior()
 ```
 restore (remove mock):
 
-```
+```js
 someObject.aMethod.restore();
 ```
 
 ###### jest
 
-```
+```js
 someObject.aMethod.mockRestore();
 ```
 
@@ -198,19 +198,19 @@ someObject.aMethod.mockRestore();
 
 ###### sinon
 
-```
+```js
 stub = sinon.stub(operations, 'add');
 stub.returns(89);
 ```
 
-```
+```js
 stub.withArgs(42).returns(89);
 stub.withArgs(4, 9, 32).returns('OK');
 ```
 
 On different calls:
 
-```
+```js
 stub.onCall(1).returns(7)
 expect(fn()).not.toEqual(7);
 expect(fn()).toEqual(7);
@@ -219,14 +219,14 @@ expect(fn()).toEqual(7);
 
 ###### jest
 
-```
+```js
 jest.spyOn(operations, 'add')
     .mockReturnValue(89);
 ```
 
 On different calls:
 
-```
+```js
 spy.mockReturnValueOnce(undefined)
 spy.mockReturnValueOnce(7);
     
@@ -240,7 +240,7 @@ expect(fn()).toEqual(7);
         
 ###### sinon
 
-```
+```js
 sinonStub.callsFake(function () {
     return 'Peteco';
 });
@@ -251,7 +251,7 @@ Different implementation on different call:
 
 ###### jest
 
-```
+```js
 jest.spyOn(operations, 'add')
   .mockImplementation(function (a, b, c) {
     if (a === 42) {
@@ -270,7 +270,7 @@ Suppose `foo` is called when mounting Button.
 
 ###### sinon
 
-```
+```js
 sinon.spy(Button.prototype, 'foo');
 
 wrapper = shallow(<Button />);
@@ -280,7 +280,7 @@ expect(Button.prototype.foo.called).toEqual(true);
 
 ###### jest
 
-```
+```js
 jest.spyOn(Button.prototype, 'foo');
 
 wrapper = shallow(<Button />);
@@ -290,16 +290,16 @@ expect(Button.prototype.foo).toHaveBeenCalled();
 
 ###### can be used together
 
-```
+```js
 const jestSpy = jest.spyOn(Button.prototype, 'doSomething');
 const sinonSpy = sinon.spy(Button.prototype, 'doSomething');
 ```
 
-```
+```js
 wrapper = shallow(React.createElement(Button));
 ```
 
-```
+```js
 expect(jestSpy).toHaveBeenCalled();
 expect(sinonSpy.called).toEqual(true);
 ```
@@ -311,7 +311,7 @@ expect(sinonSpy.called).toEqual(true);
 
 Fake the date:
 
-```
+```js
 const clock = sinon.useFakeTimers({
   now: new Date(TIMESTAMP)
 });
@@ -319,7 +319,7 @@ const clock = sinon.useFakeTimers({
 
 Fake the ticks:
 
-```
+```js
 const clock = sinon.useFakeTimers({
   toFake: [ 'nextTick' ]
 });
@@ -327,7 +327,7 @@ const clock = sinon.useFakeTimers({
 
 Restore it:
 
-```
+```js
 clock.restore();
 ```
 
@@ -335,11 +335,11 @@ clock.restore();
 
 Enable fake timers:
 
-```
+```js
 jest.useFakeTimers();
 ```
 
-```
+```js
 setTimeout(() => {
     setTimeout(() => {
         console.log('Don Inodoro!');
@@ -350,20 +350,20 @@ setTimeout(() => {
 
 Fast-forward until all timers have been executed:
 
-```
+```js
 jest.runAllTimers(); // Negociemos Don Inodoro!
 ```
 
 Run pending timers, avoid nested timers:
 
-```
+```js
 jest.runOnlyPendingTimers(); // Negociemos 
 jest.runOnlyPendingTimers(); // Don Inodoro! 
 ```
 
 Fast-forward until the value (in millis) and run all timers in the path:
 
-```
+```js
 jest.runTimersToTime(100); // Negociemos
 jest.runTimersToTime(200); // Don Inodoro!
 
@@ -373,7 +373,7 @@ jest.runTimersToTime(200); // Don Inodoro!
 
 Clear all timers:
 
-```
+```js
 jest.clearAllTimers();
 ```
 
@@ -384,7 +384,7 @@ a library extracted from `sinon`, with a implementation of the **timer APIs**: *
 *setImmediate*, *clearImmediate*, *setInterval*, *clearInterval*, *requetsAnimationFrame* and *clearAnimationFrame*, 
 a **clock instance** that controls the flow of time, and a **Date** implementation.
 
-```
+```js
 clock = lolex.install({
   now: TIMESTAMP
 });
@@ -392,7 +392,7 @@ clock = lolex.install({
 
 ##### Fake the ticks:
 
-```
+```js
 clock = lolex.install({
   toFake: [ 'nextTick' ]
 });
@@ -406,7 +406,7 @@ process.nextTick(function () {
 
 Forces nextTick calls to flush synchronously:
 
-```
+```js
 clock.runAll();
 
 expect(called).toBeTruthy();
@@ -414,7 +414,7 @@ expect(called).toBeTruthy();
 
 Trigger a tick:
 
-```
+```js
 clock.tick();
 ```
 
@@ -435,19 +435,19 @@ clock.uninstall();
 
 ###### snapshot of a function output
 
-```
+```js
 expect(fn()).toMatchSnapshot();
 ```
 
 ###### snapshot of a React Component (using react-test-renderer)
 
-```
+```js
 expect(
   ReactTestRenderer.create(React.createElement(Button))
 ).toMatchSnapshot();
 ``` 
 
-```
+```js
 const tree = renderer.create(
     <Link page="http://www.facebook.com">Facebook</Link>
   ).toJSON()
@@ -459,13 +459,13 @@ const tree = renderer.create(
 Jest disabled the [automock](https://facebook.github.io/jest/blog/2016/09/01/jest-15.html#disabled-automocking) feature by default.
 Enabling it again from the setup file `./tests/setupTests`:
 
-```
+```js
 jest.enableAutomock();
 ```
 
 Now all dependencies are mocked, we must whitelist some of them, from `package.json`:
 
-```
+```json5
 "jest": {
     "unmockedModulePathPatterns": [
       "<rootDir>/src/react-component/Button.js",
@@ -482,14 +482,14 @@ Now all dependencies are mocked, we must whitelist some of them, from `package.j
 
 or otherwise unmock them from the test:
 
-```
+```js
 jest.unmock('./path/to/dep');
 const Comp = require('../Comp'); // depends on dep, now will use the original
 ```
 
 ##### Using the mock with spies
 
-```
+```js
 // MOCK: path/to/original/__mocks__/myService
 module.exports = {
   get: jest.fn()
@@ -498,11 +498,11 @@ module.exports = {
 
 then from the test:
 
-```
+```js
 const mockService = require('path/to/original/myService');
 ```
 
-```
+```js
 // Trigger the use of the service from tested component
 wrapper.simulate('click');
 expect(mockService.get).toHaveBeenCalled();
