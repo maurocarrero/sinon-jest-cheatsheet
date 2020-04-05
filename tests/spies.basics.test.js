@@ -9,7 +9,7 @@ beforeAll(function() {
 });
 
 beforeEach(function() {
-  sinonSpy.reset();
+  sinonSpy.resetHistory();
   jestSpy.mockReset();
 });
 

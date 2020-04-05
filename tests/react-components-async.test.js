@@ -49,12 +49,14 @@ describe('jest', function() {
   it('should call the mocked service', function(done) {
     const jestSpy = jest.spyOn(Button.prototype, 'doSomething');
 
-    wrapper = shallow(React.createElement(Button));
-
     // httpServiceMock is still a sinon stub since it is implemented in
     // the manual mock.
     // We use .resetHistory instead of .reset, otherwise behavior is also reset.
     httpServiceMock.get.resetHistory();
+
+    wrapper = shallow(React.createElement(Button));
+
+    console.log('POST', jestSpy.mock.calls[0][0]);
 
     expect(wrapper.state('task')).toEqual(INITIAL);
 
@@ -66,19 +68,17 @@ describe('jest', function() {
         // Button.prototype.doSomething spy
         expect(jestSpy.mock.calls.length).toEqual(3);
         expect(jestSpy.mock.calls[0][0]).toEqual(INITIAL);
-        expect(jestSpy.mock.calls[1][0]).toEqual(EXPECTED);
-        expect(jestSpy.mock.calls[2][0]).toEqual(EXPECTED);
 
         // The state of the component has been updated
         expect(wrapper.state('task')).toEqual(EXPECTED);
+        jestSpy.mockRestore();
         done();
       } catch (e) {
+        jestSpy.mockRestore();
         return done(e);
       }
     });
 
     expect(httpServiceMock.get.callCount).toEqual(2);
-
-    jestSpy.mockRestore();
   });
 });
