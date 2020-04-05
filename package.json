@@ -20,7 +20,7 @@
   "author": "Mauro Carrero",
   "license": "MIT",
   "devDependencies": {
-    "axios": "^0.17.1",
+    "axios": "^0.19.2",
     "create-react-class": "^15.6.2",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
