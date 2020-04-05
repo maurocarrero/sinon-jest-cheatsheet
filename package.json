@@ -9,6 +9,7 @@
   },
   "scripts": {
     "prettier": "prettier --config .prettierrc --write ./{src,tests}/**/*.js",
+    "start": "npm test",
     "test": "jest --env=jsdom",
     "test:watch": "jest --env=jsdom --watch"
   },
@@ -19,7 +20,7 @@
   ],
   "author": "Mauro Carrero",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "axios": "^0.19.2",
     "create-react-class": "^15.6.2",
     "enzyme": "^3.2.0",
