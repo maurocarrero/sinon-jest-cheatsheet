@@ -1,5 +1,5 @@
 const sinon = require('sinon');
-const httpService = require.requireActual('../httpService');
+const httpService = jest.requireActual('../httpService');
 
 const get = (url) => {
   return Promise.resolve(`url was requested: ${url}`);
