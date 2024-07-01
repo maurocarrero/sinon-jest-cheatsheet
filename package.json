@@ -21,7 +21,7 @@
   "author": "Mauro Carrero",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.28.0",
     "create-react-class": "^15.6.2",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
