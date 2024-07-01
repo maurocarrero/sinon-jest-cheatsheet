@@ -94,9 +94,9 @@ describe('jest', function() {
       jest.clearAllTimers();
     });
 
-    it('setTimeout is a mock function', function() {
-      expect(setTimeout.mock.calls.length).toBe(1);
-      expect(setTimeout.mock.calls[0][1]).toBe(100);
+
+    it('setTimeout is NOT a mock function as before but it works as expected in Jest 29', function() {
+      expect(setTimeout.mock).toBeUndefined();
     });
 
     it('.runAllTimers', () => {
@@ -120,13 +120,13 @@ describe('jest', function() {
       expect(innerSpy.mock.calls.length).toEqual(1);
     });
 
-    it('.runTimersToTime | jest 22.0.0: .advanceTimersByTime', () => {
-      jest.runTimersToTime(100);
+    it('.advanceTimersByTime | jest 26.0.0: .advanceTimersByTime', () => {
+      jest.advanceTimersByTime(100);
 
       expect(callback.mock.calls.length).toEqual(1);
       expect(innerSpy.mock.calls.length).toEqual(0);
 
-      jest.runTimersToTime(200);
+      jest.advanceTimersByTime(200);
 
       expect(innerSpy.mock.calls.length).toEqual(1);
     });
