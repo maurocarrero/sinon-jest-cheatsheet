@@ -178,7 +178,7 @@ jest.spyOn(someObject, 'aMethod');
 reset both, history and behavior:
 
 ```js
-stub.resetHistory();
+stub.reset();
 ```
 
 reset call history:
