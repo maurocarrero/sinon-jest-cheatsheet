@@ -1,9 +1,10 @@
 const React = require('react');
-const { get, GITHUB_URL } = require('./httpService');
+const { get: defaultGet, GITHUB_URL } = require('./httpService');
 
 module.exports = class Button extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.get = props.get || defaultGet;
     this.state = {
       task: 'Nothing yet'
     };
@@ -12,7 +13,7 @@ module.exports = class Button extends React.Component {
   }
 
   clickHandler() {
-    get(GITHUB_URL).then(this.doSomething);
+    this.get(GITHUB_URL).then(this.doSomething);
   }
 
   doSomething(task) {
@@ -38,30 +39,4 @@ module.exports = class Button extends React.Component {
   }
 };
 
-// TODO: Using create-react-class I was unable to spy on methods. Dig into this.
 
-// const createReactClass = require('create-react-class');
-
-// module.exports = createReactClass({
-//   clickHandler() {
-//     console.log('clicked')
-//     return 'clicked';
-//   },
-//   doSomething(task) {
-//     return task;
-//   },
-//   componentDidMount() {
-//     this.doSomething('something');
-//     return 'componentDidMount';
-//   },
-//   render() {
-//     return React.createElement(
-//       'button',
-//       {
-//         onClick: this.clickHandler
-//       },
-//       'Click me'
-//     );
-//   }
-// });
-//
