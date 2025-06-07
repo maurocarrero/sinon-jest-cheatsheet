@@ -8,4 +8,4 @@ exports[`should match a React Component 1`] = `
 </button>
 `;
 
-exports[`should match a function 1`] = `undefined`;
+exports[`should match a function 1`] = `279`;
