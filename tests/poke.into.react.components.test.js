@@ -1,102 +1,100 @@
 const sinon = require('sinon');
-
 const React = require('react');
-const { shallow } = require('enzyme');
+const { render, screen } = require('@testing-library/react');
+const userEvent = require('@testing-library/user-event').default;
 
 const Button = require('../src/react-component/Button');
 
-let wrapper;
-let instance;
-
-describe('sinon', function() {
+describe('sinon', () => {
   let sinonCDMSpy;
   let sinonRenderSpy;
   let sinonDoSomethingSpy;
   let sinonClickHandlerSpy;
 
-  beforeEach(function() {
+  beforeEach(() => {
     sinonCDMSpy = sinon.spy(Button.prototype, 'componentDidMount');
     sinonRenderSpy = sinon.spy(Button.prototype, 'render');
     sinonDoSomethingSpy = sinon.spy(Button.prototype, 'doSomething');
     sinonClickHandlerSpy = sinon.spy(Button.prototype, 'clickHandler');
 
-    wrapper = shallow(React.createElement(Button));
+    render(React.createElement(Button));
   });
 
-  afterEach(function() {
+  afterEach(() => {
     sinonCDMSpy.restore();
     sinonRenderSpy.restore();
     sinonDoSomethingSpy.restore();
     sinonClickHandlerSpy.restore();
   });
 
-  it('spy on componentDidMount', function() {
-    expect(sinonCDMSpy.called).toEqual(true);
+  it('spy on componentDidMount', () => {
+    expect(sinonCDMSpy.called).toBe(true);
   });
 
-  it('spy on render', function() {
-    expect(sinonRenderSpy.called).toEqual(true);
+  it('spy on render', () => {
+    expect(sinonRenderSpy.called).toBe(true);
   });
 
-  it('spy on doSomething', function() {
-    expect(sinonDoSomethingSpy.called).toEqual(true);
+  it('spy on doSomething', () => {
+    expect(sinonDoSomethingSpy.called).toBe(true);
   });
 
-  it('spy on clickHandler', function() {
-    expect(sinonClickHandlerSpy.called).toEqual(false);
-    wrapper.simulate('click');
-    expect(sinonClickHandlerSpy.called).toEqual(true);
+  it('spy on clickHandler', async () => {
+    expect(sinonClickHandlerSpy.called).toBe(false);
+    const button = screen.getByRole('button'); // Asume que Button renderiza un <button>
+    await userEvent.click(button);
+    expect(sinonClickHandlerSpy.called).toBe(true);
   });
 });
 
-describe('jest', function() {
+describe('jest', () => {
   let jestCDMSpy;
   let jestRenderSpy;
   let jestDoSomethingSpy;
   let jestClickHandlerSpy;
 
-  beforeEach(function() {
+  beforeEach(() => {
     jestCDMSpy = jest.spyOn(Button.prototype, 'componentDidMount');
     jestRenderSpy = jest.spyOn(Button.prototype, 'render');
     jestDoSomethingSpy = jest.spyOn(Button.prototype, 'doSomething');
     jestClickHandlerSpy = jest.spyOn(Button.prototype, 'clickHandler');
 
-    wrapper = shallow(React.createElement(Button));
+    render(React.createElement(Button));
   });
 
-  afterEach(function() {
+  afterEach(() => {
     jestCDMSpy.mockRestore();
     jestRenderSpy.mockRestore();
     jestDoSomethingSpy.mockRestore();
     jestClickHandlerSpy.mockRestore();
   });
 
-  it('spy on componentDidMount', function() {
+  it('spy on componentDidMount', () => {
     expect(jestCDMSpy).toHaveBeenCalled();
   });
 
-  it('spy on doSomething', function() {
+  it('spy on doSomething', () => {
     expect(jestDoSomethingSpy).toHaveBeenCalled();
   });
 
-  it('spy on clickHandler', function() {
-    wrapper.simulate('click');
-
+  it('spy on clickHandler', async () => {
+    const button = screen.getByRole('button');
+    await userEvent.click(button);
     expect(jestClickHandlerSpy).toHaveBeenCalled();
   });
 });
 
-describe('sinon && jest', function() {
-  it('spying both at a time', function() {
+describe('sinon && jest', () => {
+  it('spying both at a time', () => {
     const jestSpy = jest.spyOn(Button.prototype, 'doSomething');
     const sinonSpy = sinon.spy(Button.prototype, 'doSomething');
 
     expect(jestSpy).not.toHaveBeenCalled();
-    expect(sinonSpy.called).toEqual(false);
+    expect(sinonSpy.called).toBe(false);
 
-    wrapper = shallow(React.createElement(Button));
+    render(React.createElement(Button));
 
     expect(jestSpy).toHaveBeenCalled();
-    expect(sinonSpy.called).toEqual(true);
+    expect(sinonSpy.called).toBe(true);
   });
 });
