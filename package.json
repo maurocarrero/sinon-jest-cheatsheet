@@ -21,6 +21,7 @@
   "author": "Mauro Carrero",
   "license": "MIT",
   "dependencies": {
+    "@sinonjs/fake-timers": "^14.0.0",
     "@testing-library/user-event": "^14.6.1",
     "axios": "^1.7.2",
     "react": "^18.3.1",
